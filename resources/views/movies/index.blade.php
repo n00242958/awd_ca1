@@ -16,6 +16,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {{-- for each movie display a MovieCard with the appropiate content --}}
                         @foreach($movies as $movie)
+                        <div>
                         <a href="{{ route('movies.show', $movie) }}">
                             <x-movie-card
                                 :title="$movie->title"
@@ -23,6 +24,23 @@
                                 :image="$movie->image"
                             />
                         </a>
+
+                        {{-- edit/delete buttons --}}
+                        <div class="mt-4 flex space-x-2">
+                            <a href="{{ route('movies.edit', $movie) }}">
+                                Edit
+                            </a>
+
+                            <form action="{{ route('movies.destroy', $movie) }}" method="POST"
+                            onsubmit="return confirm('Are you sure you wish to delete this movie?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
+                        </div>
                         @endforeach
                     </div>
                 </div>
