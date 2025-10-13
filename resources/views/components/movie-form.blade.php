@@ -1,6 +1,6 @@
-@props(['action', 'method'])
+@props(['action', 'method', 'movie'])
 
-<!-- html form to create a new movie -->
+{{-- html form to create a new movie --}}
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
     @csrf
     @if($method === 'PUT' || $method === 'PATCH')
@@ -9,7 +9,7 @@
 
     <div class="mb-4">
         <label for="title" class="block text-sm text-gray-700">Title</label>
-        <!-- text input for the movie's title -->
+        {{-- text input for the movie's title --}}
         <input
             type="text"
             name="title"
@@ -25,7 +25,7 @@
 
     <div class="mb-4">
         <label for="image" class="block text-sm font-medium text-gray-700">Movie Poster Image</label>
-        <!-- file input for the movie's poster -->
+        {{-- file input for the movie's poster --}}
         <input
             type="file"
             name="image"
@@ -40,13 +40,13 @@
 
     @isset($movie->image)
     <div class="mb-4">
-        <img src="{{ asset($movie->image) }}" alt="Movie poster" class="w-24 h-32 object-cover">
+        <img src="{{ asset('images/movies/' . $movie->image) }}" alt="Movie poster" class="w-24 h-32 object-cover">
     </div>
     @endisset
 
     <div class="mb-4">
         <label for="description" class="block text-sm text-gray-700">Description</label>
-        <!-- text input for the movie's description -->
+        {{-- text input for the movie's description --}}
         <input
             type="text"
             name="description"
@@ -62,7 +62,7 @@
 
     <div class="mb-4">
         <label for="release_date" class="block text-sm text-gray-700">Release Date</label>
-        <!-- text input for the movie's release date -->
+        {{-- text input for the movie's release date --}}
         <input
             type="text"
             name="release_date"
@@ -78,7 +78,7 @@
 
     <div class="mb-4">
         <label for="review_score" class="block text-sm text-gray-700">Review Score</label>
-        <!-- text input for the movie's review score -->
+        {{-- text input for the movie's review score --}}
         <input
             type="text"
             name="review_score"
@@ -94,7 +94,7 @@
 
     <div class="mb-4">
         <label for="age_rating" class="block text-sm text-gray-700">Age Rating</label>
-        <!-- text input for the movie's age rating -->
+        {{-- text input for the movie's age rating --}}
         <input
             type="text"
             name="age_rating"
@@ -109,7 +109,7 @@
     </div>
 
     <div>
-        <!-- depending on if we are editing an existing movie change the submit button's text -->
+        {{-- depending on if we are editing an existing movie change the submit button's text --}}
         <x-primary-button>
             {{ isset($movie) ? 'Update Movie' : 'Add Movie' }}
         </x-primary-button>

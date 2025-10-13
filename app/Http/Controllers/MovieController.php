@@ -44,11 +44,9 @@ class MovieController extends Controller
         // Parse the date field
         $releaseDate = Carbon::parse($request->release_date);
 
-        // If an image was submitted, we need to save it
-        if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('images/movies'), $imageName);
-        }
+        // Save the movie's poster
+        $imageName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('images/movies'), $imageName);
 
         // Finally, store the movie
         Movie::create([
@@ -79,7 +77,7 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        //
+        return view('movies.edit')->with('movie', $movie);
     }
 
     /**
@@ -87,7 +85,41 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        //
+        // Validate the request
+        $request->validate([
+            'title' => 'required|max:500',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required|max:500',
+            'release_date' => 'required|max:500',
+            'review_score' => 'required|integer',
+            'age_rating' => 'required|integer'
+        ]);
+
+        // Parse the date field
+        $releaseDate = Carbon::parse($request->release_date);
+
+        // Organise new fields
+        $updateFields = [
+            'title' => $request->title,
+            'description' => $request->description,
+            'release_date' => $releaseDate,
+            'review_score' => $request->review_score,
+            'age_rating' => $request->age_rating,
+            'updated_at' => now()
+        ];
+
+        // If an image was submitted, save it and add to the update fields
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images/movies'), $imageName);
+            $updateFields['image'] = $imageName;
+        }
+
+        // Finally, update the movie
+        $movie->update($updateFields);
+
+        // Return to index and notify success
+        return to_route('movies.index')->with('success', 'Movie updated successfully');
     }
 
     /**
