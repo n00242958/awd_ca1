@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class MovieController extends Controller
 {
@@ -29,7 +31,39 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request
+        $request->validate([
+            'title' => 'required|max:500',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required|max:500',
+            'release_date' => 'required|max:500',
+            'review_score' => 'required|integer',
+            'age_rating' => 'required|integer'
+        ]);
+
+        // Parse the date field
+        $releaseDate = Carbon::parse($request->release_date);
+
+        // If an image was submitted, we need to save it
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images/movies'), $imageName);
+        }
+
+        // Finally, store the movie
+        Movie::create([
+            'title' => $request->title,
+            'image' => $imageName,
+            'description' => $request->description,
+            'release_date' => $releaseDate,
+            'review_score' => $request->review_score,
+            'age_rating' => $request->age_rating,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        // Return to index and notify success
+        return to_route('movies.index')->with('success', 'Movie created successfully');
     }
 
     /**
