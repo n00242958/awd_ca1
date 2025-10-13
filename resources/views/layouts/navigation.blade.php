@@ -19,7 +19,7 @@
                         {{ __('View All Movies') }}
                     </x-nav-link>
                     <x-nav-link :href="route('movies.create')" :active="request()->routeIs('movies.create')">
-                        {{ __('Create New Movies') }}
+                        {{ __('Create New Movie') }}
                     </x-nav-link>
                 </div>
             </div>
