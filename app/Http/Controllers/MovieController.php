@@ -14,8 +14,23 @@ class MovieController extends Controller
      */
     public function index(Request $request)
     {
-        $movies = Movie::all();
-        return view('movies.index', compact('movies'));
+        // Validate the request
+        $request->validate([
+            'search' => 'max:500'
+        ]);
+
+        // Find movies matching our search keywords
+        if (isset($request->search))
+        {
+            $movies = Movie::search($request->search)->get();
+        }
+        else
+        {
+            $movies = Movie::all();
+        }
+
+        // Pass to view
+        return view('movies.index', compact('movies'))->with('search', $request->search);
     }
 
     /**
