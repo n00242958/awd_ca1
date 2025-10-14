@@ -12,7 +12,7 @@ class MovieController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $movies = Movie::all();
         return view('movies.index', compact('movies'));
