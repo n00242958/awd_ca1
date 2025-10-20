@@ -14,8 +14,7 @@ class MovieSeeder extends Seeder
      */
     public function run(): void
     {
-        $currentTimestamp = Carbon::now();
-
+        // Insert example movies
         DB::table('movies')->insert([
             [
                 'title' => 'The Great Gatsby',
