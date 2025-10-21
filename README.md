@@ -32,7 +32,7 @@ HTML templating system.
 
 ### Week 2
 
-The second week was spent getting up to speed on the creation of Models
+The second week was spent getting up to speed on the creation of models
 and their surrounding logic. In the labs, we created a model for different
 species of plants and displayed a list of them all using HTML Blade templates.
 
@@ -47,9 +47,16 @@ object should interact with each other:
 
 ![Movie ERD Diagram](erd.png)
 
-What this means is that the central Model in my Laravel application
+What this means is that the central model in my Laravel application
 is the Movie. Users can sign up, search Movies, and in the future,
 rent specific copies of the Movie.
+
+I also created migrations and database seeders for my new model.
+A migration is a reversable set of operations done to a database
+to update it from one schema to another. In my case, I create
+the database table for my Movie model. Then, database seeders can
+be ran afterwards to initialise the database to a certain state.
+My `MovieSeeder` class inserts a selection of sample movies.
 
 ### Week 3
 
