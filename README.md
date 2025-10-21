@@ -9,7 +9,7 @@ keywords through implementing the Laravel Scout package.
 
 ## Weekly Progress Overview
 
-## Week 1
+### Week 1
 
 During my first week I was introduced to Laravel and the idea of
 Model-View-Controllers. The MVC pattern was established by the
@@ -30,7 +30,7 @@ using its default template. We then modified the Blade template for
 the landing page as a way of getting familiar with Laravel's
 HTML templating system.
 
-## Week 2
+### Week 2
 
 The second week was spent getting up to speed on the creation of Models
 and their surrounding logic. In the labs, we created a model for different
@@ -51,7 +51,7 @@ What this means is that the central Model in my Laravel application
 is the Movie. Users can sign up, search Movies, and in the future,
 rent specific copies of the Movie.
 
-## Week 3
+### Week 3
 
 This week was spent creating CRUD methods and pages for our models.
 CRUD stands for Create, Read, Update and Delete, and forms the basis
@@ -73,10 +73,10 @@ search keywords. The search bar slots into the navbar at the top
 of any page and lets you easily find whatever movie anywhere you
 are on the website.
 
-## Week 4
+### Week 4
 
 Week 4 was spent doing cleanup and documentation of the codebase, in
 preparation for submitting CA1.
 
-There is additional work which could be done like theming or a
-star rating system, but for now, this should be enough.
+In the future, additional features could be implemented,
+like a new theme, or a star rating system.
