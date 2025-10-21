@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 
+// The movie seeder is ran after initial DB migrations and
+// populates the Movie model with example data.
 class MovieSeeder extends Seeder
 {
     /**

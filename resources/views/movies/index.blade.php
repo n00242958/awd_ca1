@@ -9,6 +9,7 @@
         </h2>
     </x-slot>
 
+    {{ Display any message provided by the controller on the top of the page. }}
     <x-alert-success>
         {{ session('success') }}
     </x-alert-success>
@@ -18,7 +19,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {{-- for each movie display a MovieCard with the appropiate content --}}
+                        {{-- for each movie display a MovieCard with the appropriate content --}}
                         @foreach($movies as $movie)
                         <x-movie-card
                             :movie="$movie"
