@@ -9,7 +9,7 @@
         </h2>
     </x-slot>
 
-    {{ Display any message provided by the controller on the top of the page. }}
+    {{-- Display any message provided by the controller on the top of the page. --}}
     <x-alert-success>
         {{ session('success') }}
     </x-alert-success>
