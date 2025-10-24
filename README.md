@@ -26,7 +26,7 @@ presentation and interactivity of websites, and their communication
 with backend databases.
 
 With all this in mind, we installed Laravel and created new projects
-using its default template. We then modified the Blade template for
+using its default template. We then modified the blade template for
 the landing page as a way of getting familiar with Laravel's
 HTML templating system.
 
@@ -34,7 +34,7 @@ HTML templating system.
 
 The second week was spent getting up to speed on the creation of models
 and their surrounding logic. In the labs, we created a model for different
-species of plants and displayed a list of them all using HTML Blade templates.
+species of plants and displayed a list of them all using HTML blade templates.
 
 We also started our projects this week. I chose to create an app for
 movie rentals in the vein of old DVD rental shops. I chose this
@@ -79,6 +79,9 @@ my Movie model to interact with Laravel Scout when provided with
 search keywords. The search bar slots into the navbar at the top
 of any page and lets you easily find whatever movie anywhere you
 are on the website.
+
+During this week I also refactored my movie blades to simply accept
+a $movie object instead of its exploded individual fields.
 
 ### Week 4
 
