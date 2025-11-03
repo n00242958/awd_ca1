@@ -18,9 +18,11 @@
                     <x-nav-link :href="route('movies.index')" :active="request()->routeIs('movies.index')">
                         {{ __('View All Movies') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('movies.create')" :active="request()->routeIs('movies.create')">
-                        {{ __('Create New Movie') }}
-                    </x-nav-link>
+                    @if(auth()->user()->role == 'admin')
+                        <x-nav-link :href="route('movies.create')" :active="request()->routeIs('movies.create')">
+                            {{ __('Create New Movie') }}
+                        </x-nav-link>
+                    @endif
                 </div>
 
                 {{-- Search bar --}}

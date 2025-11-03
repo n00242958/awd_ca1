@@ -21,9 +21,12 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {{-- for each movie display a MovieCard with the appropriate content --}}
                         @foreach($movies as $movie)
+                        @php
+                            $showAdmin = auth()->user()->role == 'admin';
+                        @endphp
                         <x-movie-card
                             :movie="$movie"
-                            :showAdmin="true"
+                            :showAdmin="$showAdmin"
                         />
                         @endforeach
                     </div>
