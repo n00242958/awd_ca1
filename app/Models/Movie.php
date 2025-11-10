@@ -20,6 +20,12 @@ class Movie extends Model
         'age_rating'
     ];
 
+    // returns all castings associated with the movie
+    public function castings()
+    {
+        return $this->hasMany(Casting::class);
+    }
+
     /**
      * Get the name of the index associated with the model.
      */
