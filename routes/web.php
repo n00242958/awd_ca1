@@ -30,4 +30,11 @@ Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movi
 Route::put('/movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
 Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
 
+// create all routes for reviews
+Route::resource('castings', CastingController::class);
+
+// override previous casting store route to provide a movie parameter
+// we reference this in our blades, e.g. <form action="{{ route('castings.store', $movie) }}"...
+Route::post('/movies/{movie}/castings', [CastingController::class, 'store'])->name('castings.store');
+
 require __DIR__.'/auth.php';
