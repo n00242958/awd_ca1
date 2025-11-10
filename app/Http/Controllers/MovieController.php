@@ -85,7 +85,9 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        return view('movies.show')->with('movie', $movie);
+        // get all castings associated with this movie
+        $movie->load('castings');
+        return view('movies.show', compact('movie'));
     }
 
     /**

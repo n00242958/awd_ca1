@@ -20,7 +20,7 @@ class CastingController extends Controller
      */
     public function create()
     {
-        //
+        // TODO: make separate page for form
     }
 
     /**
@@ -28,7 +28,18 @@ class CastingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'person' => 'required|string|min:1|max:512',
+            'role' => 'required|string|min:1|max:1024',
+        ]);
+
+        $movie->castings()->create([
+            'movie_id' => $movie->id(),
+            'person' => $request->input('person'),
+            'role' => $request->input('role')
+        ]);
+
+        return redirect()->route('movies.show', $movie)->with('success', 'Casting added successfully.');
     }
 
     /**
