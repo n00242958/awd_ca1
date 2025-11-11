@@ -1,4 +1,4 @@
-@props(['movie', 'showAdmin'])
+@props(['movie'])
 
 <div class="border rounded-lg shadow-md p-6 bg-white hover:shadow-lg transition duration-300">
     <a href="{{ route('movies.show', $movie) }}">
@@ -6,7 +6,7 @@
         <img src="{{asset( 'images/movies/' . $movie->image )}}" alt="{{ $movie->title }}">
         <h5>{!! $movie->description !!}</h5>
     </a>
-    @if ($showAdmin)
+    @if (auth()->user()->role == 'admin')
         {{-- edit/delete buttons --}}
         <div class="mt-4 flex space-x-2">
             <a href="{{ route('movies.edit', $movie) }}">
