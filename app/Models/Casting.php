@@ -9,6 +9,12 @@ class Casting extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'movie_id',
+        'person',
+        'role'
+    ];
+
     public function movie()
     {
         return $this->belongsTo(Movie::class);

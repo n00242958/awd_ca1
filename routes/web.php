@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\CastingController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,11 +31,11 @@ Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movi
 Route::put('/movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
 Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
 
-// create all routes for reviews
-Route::resource('castings', CastingController::class);
-
-// override previous casting store route to provide a movie parameter
-// we reference this in our blades, e.g. <form action="{{ route('castings.store', $movie) }}"...
+// nested routes (create etc)
+Route::post('/movies/{movie}/castings/create', [CastingController::class, 'store'])->name('castings.create');
 Route::post('/movies/{movie}/castings', [CastingController::class, 'store'])->name('castings.store');
+
+// resource routes for castings
+Route::resource('castings', CastingController::class);
 
 require __DIR__.'/auth.php';

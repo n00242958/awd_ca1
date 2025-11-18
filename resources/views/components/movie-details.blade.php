@@ -41,4 +41,8 @@
             @endforeach
         <ul>
     @endif
+
+    <x-movie-details-admin-controls
+        :movie="$movie"
+    />
 </div>

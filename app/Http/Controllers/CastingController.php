@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Casting;
 use Illuminate\Http\Request;
+use App\Models\Movie;
 
 class CastingController extends Controller
 {
@@ -26,19 +27,21 @@ class CastingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Movie $movie)
     {
+        // validate inputs
         $request->validate([
             'person' => 'required|string|min:1|max:512',
             'role' => 'required|string|min:1|max:1024',
         ]);
 
         $movie->castings()->create([
-            'movie_id' => $movie->id(),
+            'movie_id' => $movie->id,
             'person' => $request->input('person'),
             'role' => $request->input('role')
         ]);
 
+        // redirect with success
         return redirect()->route('movies.show', $movie)->with('success', 'Casting added successfully.');
     }
 
