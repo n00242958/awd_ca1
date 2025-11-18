@@ -47,6 +47,11 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
+        // validate roles
+        if (auth()->user()->role != 'admin') {
+            return redirect()->route('movies.index', $movie)->with('failure', 'Access denied.');
+        }
+
         // Validate the request
         $request->validate([
             'title' => 'required|max:500',
@@ -103,6 +108,11 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
+        // validate roles
+        if (auth()->user()->role != 'admin') {
+            return redirect()->route('movies.show', $movie)->with('failure', 'Access denied.');
+        }
+
         // Validate the request
         $request->validate([
             'title' => 'required|max:500',
@@ -145,6 +155,11 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
+        // validate roles
+        if (auth()->user()->role != 'admin') {
+            return redirect()->route('movies.idnex')->with('failure', 'Access denied.');
+        }
+
         // Remove specified model from database
         $movie->delete();
 

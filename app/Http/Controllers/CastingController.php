@@ -29,6 +29,11 @@ class CastingController extends Controller
      */
     public function store(Request $request, Movie $movie)
     {
+        // validate roles
+        if (auth()->user()->role != 'admin') {
+            return redirect()->route('movies.show', $movie)->with('failure', 'Access denied.');
+        }
+
         // validate inputs
         $request->validate([
             'person' => 'required|string|min:1|max:512',
