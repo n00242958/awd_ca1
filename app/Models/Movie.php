@@ -26,6 +26,12 @@ class Movie extends Model
         return $this->hasMany(Casting::class);
     }
 
+    // All watch lists associated with the movie
+    public function watchLists()
+    {
+        return $this->belongsToMany(WatchList::class);
+    }
+
     /**
      * Get the name of the index associated with the model.
      */

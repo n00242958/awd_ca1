@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\CastingController;
+use App\Http\Controllers\WatchListController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +22,8 @@ Route::middleware('auth')->group(function () {
 });
 
 // CA1 Movies
+// todo use auth middleware in routes
+// ->middleware('auth')
 
 Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
 Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
@@ -37,5 +40,7 @@ Route::post('/movies/{movie}/castings', [CastingController::class, 'store'])->na
 
 // resource routes for castings
 Route::resource('castings', CastingController::class);
+
+Route::resource('watch_lists', WatchList::class);
 
 require __DIR__.'/auth.php';
