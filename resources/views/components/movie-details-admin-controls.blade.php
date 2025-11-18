@@ -2,13 +2,13 @@
 
 @if (auth()->user()->role == 'admin')
 <div>
-    <h4 class="font-semibold text-md mt-8">ADMIN: Add a Casting</h4>
+    <h4 class="font-semibold text-white text-md mt-8">ADMIN: Add a Casting</h4>
 
     {{-- casting form --}}
     <form action="{{ route('castings.store', $movie) }}" method="POST" class="mt-4">
         @csrf
         <div class="mb-4">
-            <label for="person" class="block font-medium text-sm">Person</label>
+            <label for="person" class="block font-medium text-white text-sm">Person</label>
             <input type="text" name="person" id="person" rows="3" required class="mt-1 block w-full" />
             @error('person')
             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -16,7 +16,7 @@
         </div>
 
         <div class="mb-4">
-            <label for="role" class="block font-medium text-sm">Role</label>
+            <label for="role" class="block font-medium text-white text-sm">Role</label>
             <input type="text" name="role" id="role" rows="3" required class="mt-1 block w-full" />
             @error('role')
             <p class="text-sm text-red-600">{{ $message }}</p>

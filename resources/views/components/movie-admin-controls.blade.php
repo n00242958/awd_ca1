@@ -2,7 +2,7 @@
 
 @if (auth()->user()->role == 'admin')
 {{-- edit/delete buttons --}}
-<div class="mt-4 flex space-x-2">
+<div class="mt-4 flex space-x-2 text-white">
     <a href="{{ route('movies.edit', $movie) }}">
         Edit
     </a>
