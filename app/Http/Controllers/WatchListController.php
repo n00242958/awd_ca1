@@ -12,7 +12,8 @@ class WatchListController extends Controller
      */
     public function index()
     {
-        //
+        $watch_lists = WatchList::all();
+        return view('watch_lists.index', compact('watch_lists'));
     }
 
     /**

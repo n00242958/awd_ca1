@@ -41,6 +41,6 @@ Route::post('/movies/{movie}/castings', [CastingController::class, 'store'])->na
 // resource routes for castings
 Route::resource('castings', CastingController::class);
 
-Route::resource('watch_lists', WatchList::class);
+Route::resource('watch_lists', WatchListController::class);
 
 require __DIR__.'/auth.php';
