@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('movies.index')" :active="request()->routeIs('movies.index')">
                         {{ __('View All Movies') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('watch_lists.index')" :active="request()->routeIs('watch_lists.index')">
+                        {{ __('Watch Lists') }}
+                    </x-nav-link>
                     @if(auth()->user()->role == 'admin')
                         <x-nav-link :href="route('movies.create')" :active="request()->routeIs('movies.create')">
                             {{ __('Create New Movie') }}
