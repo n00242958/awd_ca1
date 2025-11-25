@@ -3,7 +3,7 @@
 <div class="p-6">
     <h1 class="font-bold text-white mb-2" style="font-size: 3rem;">{!! $watch_list->name !!}</h1>
 
-    <h4 class="font-semibold text-white text-md">Created by {{ $watch_list->user->name }}</h4>
+    <h4 class="font-semibold text-white text-md">Created by {!! $watch_list->user->name !!}</h4>
 
     <div class="overflow-hidden rounded-lg mb-4 flex justify-center">
         <img src="{{ asset('images/watch_lists/' . $watch_list->image) }}" alt="{{ $watch_list->name }}" class="w-full max-w-xs h-auto object-cover" />
