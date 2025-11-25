@@ -10,7 +10,7 @@
             <div class="bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 {{-- Display watch list details component --}}
                 <x-watch-list-details
-                    :watch_list="$watch_list"
+                    :watch_list="$watchList"
                 />
             </div>
         </div>

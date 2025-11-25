@@ -7,7 +7,7 @@
         Edit
     </a>
     <form action="{{ route('watch_lists.destroy', $watch_list) }}" method="POST"
-        onsubmit="return confirm('Are you sure you wish to delete this movie?');">
+        onsubmit="return confirm('Are you sure you wish to delete this watch list?');">
         @csrf
         @method('DELETE')
         <button type="submit">

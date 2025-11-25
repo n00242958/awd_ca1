@@ -37,6 +37,10 @@ class WatchListController extends Controller
      */
     public function show(WatchList $watchList)
     {
+        // Get movies belonging to this watch list
+        $watchList->load("movies");
+        // Get owner of this watch list
+        $watchList->load("user");
         return view('watch_lists.show', compact('watchList'));
     }
 
