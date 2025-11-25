@@ -17,7 +17,12 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {{-- show each watch list --}}
                         @foreach($watch_lists as $watch_list)
-                        <h1 class="text-white">{{ $watch_list->name }}</h1>
+                        <div class="text-white border border-gray-500 rounded-lg shadow-md p-6 bg-gray-800 hover:shadow-lg transition duration-300">
+                            <a href="{{ route('watch_lists.show', $watch_list) }}">
+                                <h4 class="font-bold text-lg">{!! $watch_list->name !!}</h4>
+                                <img src="{{asset( 'images/watch_lists/' . $watch_list->image )}}" alt="{{ $watch_list->name }}">
+                            </a>
+                        </div>
                         @endforeach
                     </div>
                 </div>
