@@ -21,7 +21,7 @@ class WatchListController extends Controller
      */
     public function create()
     {
-        //
+        return view('watch_lists.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class WatchListController extends Controller
      */
     public function show(WatchList $watchList)
     {
-        //
+        return view('watch_lists.show', compact('watchList'));
     }
 
     /**

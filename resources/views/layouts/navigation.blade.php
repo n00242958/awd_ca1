@@ -21,9 +21,12 @@
                     <x-nav-link :href="route('watch_lists.index')" :active="request()->routeIs('watch_lists.index')">
                         {{ __('Watch Lists') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('watch_lists.create')" :active="request()->routeIs('watch_lists.create')">
+                        {{ __('Create Watch List') }}
+                    </x-nav-link>
                     @if(auth()->user()->role == 'admin')
                         <x-nav-link :href="route('movies.create')" :active="request()->routeIs('movies.create')">
-                            {{ __('Create New Movie') }}
+                            {{ __('Create Movie') }}
                         </x-nav-link>
                     @endif
                 </div>
