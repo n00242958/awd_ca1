@@ -22,6 +22,10 @@
                                 <h4 class="font-bold text-lg">{!! $watch_list->name !!}</h4>
                                 <img src="{{asset( 'images/watch_lists/' . $watch_list->image )}}" alt="{{ $watch_list->name }}">
                             </a>
+
+                            <x-watch-list-admin-controls
+                                :watch_list="$watch_list"
+                            />
                         </div>
                         @endforeach
                     </div>
