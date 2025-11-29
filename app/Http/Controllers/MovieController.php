@@ -92,6 +92,8 @@ class MovieController extends Controller
     {
         // get all castings associated with this movie
         $movie->load('castings');
+        // get all watch lists associated with this movie
+        $movie->load('watchLists');
         return view('movies.show', compact('movie'));
     }
 

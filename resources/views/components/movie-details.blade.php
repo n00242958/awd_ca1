@@ -42,6 +42,20 @@
         <ul>
     @endif
 
+    {{-- watch lists --}}
+    <h4 class="font-semibold text-white text-md mt-8">Watch Lists</h4>
+    @if($movie->watchLists->isEmpty())
+        <p class="text-white">No watch lists include this movie yet.</p>
+    @else
+        <div class="p-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach($movie->watchLists as $watch_list)
+                <h1>{!! $watch_list->name !!}</h1>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
     <x-movie-details-admin-controls
         :movie="$movie"
     />
