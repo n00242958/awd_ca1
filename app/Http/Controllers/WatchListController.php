@@ -98,7 +98,37 @@ class WatchListController extends Controller
             return redirect()->route('watch_lists.show', $watchList)->with('failure', 'Access denied.');
         }
 
-        //
+        // Validate the request
+        $request->validate([
+            'name' => 'required|max:500',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'description' => 'required|max:500',
+            'movies' => 'required|array', // Makes sure at least one checkbox is checked
+            'movies.*' => 'exists:movies,id' // Ensures selected IDs exist in the database
+        ]);
+
+        // Organise new fields
+        $updateFields = [
+            'name' => $request->name,
+            'description' => $request->description,
+            'updated_at' => now()
+        ];
+
+        // If an image was submitted, save it and add to the update fields
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images/watch_lists'), $imageName);
+            $updateFields['image'] = $imageName;
+        }
+
+        // Finally, update the watch list
+        $watchList->update($updateFields);
+
+        // Attach the list of movies
+        $watchList->movies()->sync($request->movies);
+
+        // Return to index and notify success
+        return to_route('watch_lists.index')->with('success', 'Watch list updated successfully');
     }
 
     /**
