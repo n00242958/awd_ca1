@@ -13,6 +13,7 @@
                     <x-watch-list-form
                         :action="route('watch_lists.store')"
                         :method="'POST'"
+                        :movies="$movies"
                     />
                 </div>
             </div>

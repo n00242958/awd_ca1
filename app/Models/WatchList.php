@@ -9,7 +9,12 @@ class WatchList extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'image', 'description'];
+    protected $fillable = [
+        'user_id',
+        'name',
+        'image',
+        'description'
+    ];
 
     // All movies associated with the watch list
     public function movies()

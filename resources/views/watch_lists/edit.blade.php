@@ -14,6 +14,7 @@
                         :action="route('watch_lists.update', $watchList)"
                         :method="'PUT'"
                         :watch_list="$watchList"
+                        :movies="$movies"
                     />
                 </div>
             </div>
