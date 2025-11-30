@@ -60,7 +60,7 @@ class WatchListController extends Controller
         $watch_list->movies()->attach($request->movies);
 
         // Return to index and notify success
-        return to_route('watch_lists.index')->with('success', 'Watch list created successfully');
+        return redirect()->route('watch_lists.show', $watch_list)->with('success', 'Watch list created successfully');
     }
 
     /**
@@ -128,7 +128,7 @@ class WatchListController extends Controller
         $watchList->movies()->sync($request->movies);
 
         // Return to index and notify success
-        return to_route('watch_lists.index')->with('success', 'Watch list updated successfully');
+        return redirect()->route('watch_listss.show', $watch_list)->with('success', 'Watch list updated successfully');
     }
 
     /**

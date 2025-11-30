@@ -70,7 +70,7 @@ class MovieController extends Controller
         $request->image->move(public_path('images/movies'), $imageName);
 
         // Finally, store the movie
-        Movie::create([
+        $movie = Movie::create([
             'title' => $request->title,
             'image' => $imageName,
             'description' => $request->description,
@@ -82,7 +82,7 @@ class MovieController extends Controller
         ]);
 
         // Return to index and notify success
-        return to_route('movies.index')->with('success', 'Movie created successfully');
+        return redirect()->route('movies.show', $movie)->with('success', 'Movie created successfully');
     }
 
     /**
@@ -149,7 +149,7 @@ class MovieController extends Controller
         $movie->update($updateFields);
 
         // Return to index and notify success
-        return to_route('movies.index')->with('success', 'Movie updated successfully');
+        return redirect()->route('movies.show', $movie)->with('success', 'Movie updated successfully');
     }
 
     /**
