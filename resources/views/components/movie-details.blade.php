@@ -29,14 +29,34 @@
 
     {{-- castings --}}
     <h4 class="font-semibold text-white text-md mt-8">Cast</h4>
+    @if (auth()->user()->role == 'admin')
+        <a href="{{ route('castings.create', $movie) }}" class="text-white">
+            Add Casting
+        </a>
+    @endif
     @if($movie->castings->isEmpty())
         <p class="text-white">No cast members added yet.</p>
     @else
         <ul class="mt-4 space-y-4">
             @foreach($movie->castings as $casting)
-                <li class="bg-gray-100 p-4 rounded-lg">
+                <li class="bg-gray-700 p-4 rounded-lg text-white">
                     <p>{{ $casting->person }}</p>
                     <p>{{ $casting->role }}</p>
+                    @if (auth()->user()->role == 'admin')
+                    <div class="mt-4 flex space-x-2">
+                        <a href="{{ route('castings.edit', $casting) }}">
+                            Edit
+                        </a>
+                        <form action="{{ route('castings.destroy', $casting) }}" method="POST"
+                            onsubmit="return confirm('Are you sure you wish to delete this casting?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                    @endif
                 </li>
             @endforeach
         <ul>
@@ -57,8 +77,4 @@
             </div>
         </div>
     @endif
-
-    <x-movie-details-admin-controls
-        :movie="$movie"
-    />
 </div>

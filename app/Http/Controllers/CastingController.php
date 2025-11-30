@@ -19,9 +19,10 @@ class CastingController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Movie $movie)
     {
-        // TODO: make separate page for form
+        // Give view the parent movie
+        return view('castings.create')->with('movie', $movie);
     }
 
     /**
@@ -63,7 +64,7 @@ class CastingController extends Controller
      */
     public function edit(Casting $casting)
     {
-        //
+        return view('castings.edit')->with('casting', $casting);
     }
 
     /**
@@ -71,7 +72,29 @@ class CastingController extends Controller
      */
     public function update(Request $request, Casting $casting)
     {
-        //
+        // validate roles
+        if (auth()->user()->role != 'admin') {
+            return redirect()->route('movies.show', $casting->movie)->with('failure', 'Access denied.');
+        }
+
+        // validate inputs
+        $request->validate([
+            'person' => 'required|string|min:1|max:512',
+            'role' => 'required|string|min:1|max:1024',
+        ]);
+
+        // Organise new fields
+        $updateFields = [
+            'person' => $request->person,
+            'role' => $request->role,
+            'updated_at' => now()
+        ];
+
+        // Finally, update the watch list
+        $casting->update($updateFields);
+
+        // Return to index and notify success
+        return to_route('movies.show', $casting->movie)->with('success', 'Casting updated successfully');
     }
 
     /**
@@ -79,6 +102,15 @@ class CastingController extends Controller
      */
     public function destroy(Casting $casting)
     {
-        //
+        // validate roles
+        if (auth()->user()->role != 'admin') {
+            return redirect()->route('movies.show', $casting->movie)->with('failure', 'Access denied.');
+        }
+
+        // Remove specified model from database
+        $casting->delete();
+
+        // Return to index and notify success
+        return to_route('movies.show', $casting->movie)->with('success', 'Casting deleted successfully');
     }
 }

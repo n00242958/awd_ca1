@@ -22,8 +22,6 @@ Route::middleware('auth')->group(function () {
 });
 
 // CA1 Movies
-// todo use auth middleware in routes
-// ->middleware('auth')
 
 Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
 Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
@@ -35,11 +33,12 @@ Route::put('/movies/{movie}', [MovieController::class, 'update'])->name('movies.
 Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
 
 // nested routes (create etc)
-Route::post('/movies/{movie}/castings/create', [CastingController::class, 'store'])->name('castings.create');
+Route::get('/movies/{movie}/castings/create', [CastingController::class, 'create'])->name('castings.create');
 Route::post('/movies/{movie}/castings', [CastingController::class, 'store'])->name('castings.store');
 
-// resource routes for castings
-//Route::resource('castings', CastingController::class);
+Route::get('/castings/{casting}/edit', [CastingController::class, 'edit'])->name('castings.edit');
+Route::put('/castings/{casting}', [CastingController::class, 'update'])->name('castings.update');
+Route::delete('/castings/{casting}', [CastingController::class, 'destroy'])->name('castings.destroy');
 
 Route::resource('watch_lists', WatchListController::class);
 
