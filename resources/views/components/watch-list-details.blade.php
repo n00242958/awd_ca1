@@ -13,6 +13,14 @@
         :watch_list="$watch_list"
     />
 
+    <h4 class="text-white font-semibold text-md mt-8">
+        Description
+    </h4>
+
+    <p class="text-white leading-relaxed">
+        {!! $watch_list->description !!}
+    </p>
+
     {{-- movies --}}
     <h4 class="font-semibold text-white text-md mt-8">Movies</h4>
     @if($watch_list->movies->isEmpty())
