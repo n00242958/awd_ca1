@@ -39,7 +39,7 @@ Route::post('/movies/{movie}/castings/create', [CastingController::class, 'store
 Route::post('/movies/{movie}/castings', [CastingController::class, 'store'])->name('castings.store');
 
 // resource routes for castings
-Route::resource('castings', CastingController::class);
+//Route::resource('castings', CastingController::class);
 
 Route::resource('watch_lists', WatchListController::class);
 
