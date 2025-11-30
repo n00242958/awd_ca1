@@ -1,6 +1,6 @@
 @props(['watch_list'])
 
-@if (auth()->user()->role == 'admin')
+@if (auth()->user()->role == 'admin' || auth()->user() == $watch_list->user)
 {{-- edit/delete buttons --}}
 <div class="mt-4 flex space-x-2 text-white">
     <a href="{{ route('watch_lists.edit', $watch_list) }}">
