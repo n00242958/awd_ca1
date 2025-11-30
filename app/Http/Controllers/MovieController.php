@@ -159,7 +159,7 @@ class MovieController extends Controller
     {
         // validate roles
         if (auth()->user()->role != 'admin') {
-            return redirect()->route('movies.idnex')->with('failure', 'Access denied.');
+            return redirect()->route('movies.index')->with('failure', 'Access denied.');
         }
 
         // Remove specified model from database
