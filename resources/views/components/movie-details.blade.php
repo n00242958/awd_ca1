@@ -50,7 +50,9 @@
         <div class="p-6">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($movie->watchLists as $watch_list)
-                <h1>{!! $watch_list->name !!}</h1>
+                <x-watch-list-card
+                    :watch_list="$watch_list"
+                />
                 @endforeach
             </div>
         </div>
