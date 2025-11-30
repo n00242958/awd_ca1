@@ -64,7 +64,13 @@
         {{-- make a checkbox for each movie --}}
         @foreach($movies as $movie)
         <div>
-            <input type="checkbox" name="movies[]" value="{{ $movie->id }}" id="movie-{{ $movie->id }}">
+            <input
+                type="checkbox"
+                name="movies[]"
+                value="{{ $movie->id }}"
+                id="movie-{{ $movie->id }}"
+                {{ isset($watch_list) && $watch_list->movies->contains('id', $movie->id) ? 'checked' : '' }}
+            />
             <label for="movie-{{ $movie->id }}">{{ $movie->title }}</label>
         </div>
         @endforeach
