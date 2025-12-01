@@ -128,7 +128,7 @@ class WatchListController extends Controller
         $watchList->movies()->sync($request->movies);
 
         // Return to index and notify success
-        return redirect()->route('watch_lists.show', $watch_list)->with('success', 'Watch list updated successfully');
+        return redirect()->route('watch_lists.show', $watchList)->with('success', 'Watch list updated successfully');
     }
 
     /**
